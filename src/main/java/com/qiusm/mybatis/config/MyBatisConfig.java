@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -25,7 +26,7 @@ public class MyBatisConfig {
      *
      * @return MybatisPlusInterceptor
      */
-    // @Bean
+    @Bean
     public MybatisPlusInterceptor mybatisPlusTransactionInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
@@ -37,7 +38,7 @@ public class MyBatisConfig {
      *
      * @return MybatisPlusInterceptor
      */
-    // @Bean
+    @Bean
     public MybatisPlusInterceptor mybatisPlusPageInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
@@ -46,14 +47,28 @@ public class MyBatisConfig {
     }
 
     /**
-     * 逻辑删除插件
+     * 逻辑删除插件<br>
+     * 需要配置以下内容<br>
+     * 配置逻辑删除 没删除的为0 删除的为1 <br>
+     * mybatis-plus.global-config.db-config.logic-delete-value=1 <br>
+     * mybatis-plus.global-config.db-config.logic-not-delete-value=0 <br>
      *
      * @return MybatisPlusInterceptor
      */
-    // @Bean
+    @Bean
     public MybatisPlusInterceptor mybatisPlusDeleteInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
         return interceptor;
     }
+
+/*    //性能分析插件
+    @Bean
+    @Profile({"dev", "test"})//设置dev开发、test测试 环境开启  保证我们的效率
+    public PerformanceInterceptor performanceInterceptor() {
+        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        performanceInterceptor.setMaxTime(100);//设置sql最大执行时间*ms，如果超过了则不执行
+        performanceInterceptor.setFormat(true);//开启sql格式化
+        return performanceInterceptor;
+    }*/
 }

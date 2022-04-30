@@ -1,9 +1,6 @@
 package com.qiusm.mybatis.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -24,7 +21,7 @@ public class UserEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @TableField("create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @TableField("`password`")
@@ -32,6 +29,17 @@ public class UserEntity implements Serializable {
 
     @TableField("username")
     private String username;
+
+    /**
+     * <code>@Version</code>乐观锁 <br>
+     * <code>update user set name = "wsk",version = version+1
+     * where id = 1 and version = 1</code>
+     */
+    @Version
+    private Integer version;
+
+    @TableLogic
+    private Integer deleted;
 
     public Long getId() {
         return id;
