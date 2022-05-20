@@ -26,7 +26,7 @@ public class MySqlGenerator {
      */
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/qiusm?useUnicode=true&useSSL=false&characterEncoding=utf8";
     private static final String JDBC_USER_NAME = "root";
-    private static final String JDBC_PASSOWRD = "zhouziyi";
+    private static final String JDBC_PASSOWRD = "root";
 
     /**
      * 包名和模块名

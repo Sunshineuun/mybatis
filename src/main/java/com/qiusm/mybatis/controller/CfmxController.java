@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author qiushengming
  */
 @Slf4j
 @RestController
-@RequestMapping("ghdj")
+@RequestMapping("cfmx")
 public class CfmxController {
     @DubboReference(version = "0.0.1")
     private MongoService mongoGhdjService;
@@ -29,11 +31,14 @@ public class CfmxController {
     @Resource
     private CfmxService cfmxService;
 
-    @GetMapping
-    public void cfmx() {
-        cfmxService.listByStream(new ResultHandler<Model<?>>() {
-            @Override
-            public void handleResult(ResultContext<? extends Model<?>> resultContext) {
+    final private AtomicInteger count = new AtomicInteger();
+    // final private Integer index = 6876026;
+
+    @GetMapping("list/stream")
+    public void cfmx(Integer index) {
+        cfmxService.listByStream(resultContext -> {
+            int c = count.incrementAndGet();
+            if (c > index) {
                 CfmxEntity obj = (CfmxEntity) resultContext.getResultObject();
                 Boolean r = mongoGhdjService.insert(JSONObject.toJSONString(obj), "ck10_cfmx");
                 log.info("Id: {}, result: {}", obj.getId(), r);

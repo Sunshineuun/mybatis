@@ -26,7 +26,7 @@ public class MyBatisConfig {
      *
      * @return MybatisPlusInterceptor
      */
-    @Bean
+    // @Bean
     public MybatisPlusInterceptor mybatisPlusTransactionInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
@@ -38,7 +38,7 @@ public class MyBatisConfig {
      *
      * @return MybatisPlusInterceptor
      */
-    @Bean
+    // @Bean
     public MybatisPlusInterceptor mybatisPlusPageInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
@@ -55,7 +55,7 @@ public class MyBatisConfig {
      *
      * @return MybatisPlusInterceptor
      */
-    @Bean
+    // @Bean
     public MybatisPlusInterceptor mybatisPlusDeleteInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
