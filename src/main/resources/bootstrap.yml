@@ -22,7 +22,7 @@ spring:
         enabled: false
       discovery:
         # 控制是否注册到Nacos上
-        enabled: true
+        enabled: false
 # 配置要加载boot里面才行，加载application中则加载不到文件
 logging:
   level:

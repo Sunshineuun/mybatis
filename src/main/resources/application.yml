@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mybatis
+    name: spring-mybatis
   datasource:
     dynamic:
       primary: mysql
@@ -8,14 +8,14 @@ spring:
       datasource:
         mysql:
           url: jdbc:mysql://localhost:3306/qiusm
-          username: root
-          password: root
+          username: ENC(xoJqlM1sWc5Xr8kDh8k/dA==)
+          password: ENC(xoJqlM1sWc5Xr8kDh8k/dA==)
           driver-class-name: com.mysql.cj.jdbc.Driver
-        oracle:
-          url: jdbc:oracle:thin:@192.168.1.7:1521:orcl
-          username: qiusm
-          password: qiusm123
-          driver-class-name: oracle.jdbc.driver.OracleDriver
+#        oracle:
+#          url: jdbc:oracle:thin:@192.168.1.7:1521:orcl
+#          username: qiusm
+#          password: qiusm123
+#          driver-class-name: oracle.jdbc.driver.OracleDriver
     druid:
       # 连接数据库的url，不同数据库不一样。例如：
       # mysql : jdbc:mysql://ip:port/database
@@ -108,17 +108,16 @@ logging:
   config: classpath:logback-config.xml
   file:
     path: /tmp/logs
-
 # mybatis plus config
 mybatis-plus:
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
   global-config:
     db-config:
       logic-delete-value: 1
       logic-not-delete-value: 0
   mapper-locations: mapper/*.xml
-
+# dubbo
 dubbo:
   consumer:
     timeout: 600000
@@ -138,3 +137,7 @@ dubbo:
     subscribed-services: mongodb
 server:
   port: 8004
+# jasypt
+jasypt:
+  encryptor:
+    password: luyun

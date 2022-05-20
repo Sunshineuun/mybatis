@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Slf4j
 public class MybatisTest extends MybatisApplicationTests {
@@ -19,7 +20,7 @@ public class MybatisTest extends MybatisApplicationTests {
         UserEntity user = new UserEntity();
         user.setUsername("qiusm-mybatis1");
         user.setPassword(MD5.create().digestHex(user.getUsername()));
-        user.setCreateTime(LocalDateTime.now());
+        user.setCreateTime(new Date());
         userService.save(user);
         log.info("insert user : {}", user);
     }
