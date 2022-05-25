@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RestController
 @RequestMapping("cfmx")
 public class CfmxController {
-    @DubboReference(version = "0.0.1")
+    // @DubboReference(version = "0.0.1")
     private MongoService mongoGhdjService;
 
     @Resource
@@ -44,6 +44,5 @@ public class CfmxController {
                 log.info("Id: {}, result: {}", obj.getId(), r);
             }
         });
-
     }
 }
