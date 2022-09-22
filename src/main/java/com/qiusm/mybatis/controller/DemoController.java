@@ -34,4 +34,9 @@ public class DemoController {
         mongoService.insert(JSONObject.toJSONString(u), "uesr");
         return "ok";
     }
+
+    @GetMapping("hello")
+    public String hello() {
+        return "hello word. OK!!!";
+    }
 }

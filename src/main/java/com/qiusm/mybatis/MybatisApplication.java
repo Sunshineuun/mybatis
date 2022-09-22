@@ -11,14 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @EnableEncryptableProperties
 @SpringBootApplication(exclude = {
-//        DubboAutoConfiguration.class,
-//        DubboMetadataAutoConfiguration.class,
-//        DubboServiceAutoConfiguration.class,
-//        DubboOpenFeignAutoConfiguration.class,
-//        DubboServiceDiscoveryAutoConfiguration.class,
-//        DubboMetadataEndpointAutoConfiguration.class,
-//        DubboLoadBalancedRestTemplateAutoConfiguration.class,
-//        DubboServiceRegistrationAutoConfiguration.class
+        DubboAutoConfiguration.class,
+        DubboMetadataAutoConfiguration.class,
+        DubboServiceAutoConfiguration.class,
+        DubboOpenFeignAutoConfiguration.class,
+        DubboServiceDiscoveryAutoConfiguration.class,
+        DubboMetadataEndpointAutoConfiguration.class,
+        DubboLoadBalancedRestTemplateAutoConfiguration.class,
+        DubboServiceRegistrationAutoConfiguration.class
 })
 public class MybatisApplication {
 

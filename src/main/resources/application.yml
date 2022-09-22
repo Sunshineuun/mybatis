@@ -1,21 +1,40 @@
-#spring:
-##  application:
-##    name: spring-mybatis
-#  datasource:
-#    dynamic:
-#      primary: mysql
-#      strict: false
-#      datasource:
-#        mysql:
-#          url: jdbc:mysql://localhost:3306/qiusm
+spring:
+  main:
+    allow-circular-references: true
+  application:
+    name: spring-mybatis
+#  shardingsphere:
+#    datasource:
+#      names: ds_0, ds_1
+#      ds_0:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driverClassName: com.mysql.cj.jdbc.Driver
+#        jdbcUrl: jdbc:mysql://localhost:3307/qiusm?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#        username: root
+#        password: 123456
+#      ds_1:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driverClassName: com.mysql.cj.jdbc.Driver
+#        jdbcUrl: jdbc:mysql://localhost:3308/qiusm?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#        username: root
+#        password: 123456
+  datasource:
+    dynamic:
+      primary: mysql
+      strict: false
+      datasource:
+        mysql:
+          url: jdbc:mysql://192.168.1.161:3306/td_blockchain?useSSL=false
 #          username: ENC(xoJqlM1sWc5Xr8kDh8k/dA==)
 #          password: ENC(xoJqlM1sWc5Xr8kDh8k/dA==)
-#          driver-class-name: com.mysql.cj.jdbc.Driver
-##        oracle:
-##          url: jdbc:oracle:thin:@192.168.1.7:1521:orcl
-##          username: qiusm
-##          password: qiusm123
-##          driver-class-name: oracle.jdbc.driver.OracleDriver
+          username: root
+          password: 2008@XYdsj.com
+          driver-class-name: com.mysql.cj.jdbc.Driver
+#        oracle:
+#          url: jdbc:oracle:thin:@192.168.1.7:1521:orcl
+#          username: qiusm
+#          password: qiusm123
+#          driver-class-name: oracle.jdbc.driver.OracleDriver
 #    druid:
 #      # 连接数据库的url，不同数据库不一样。例如：
 #      # mysql : jdbc:mysql://ip:port/database
@@ -102,22 +121,20 @@
 #        principalSessionName: session_user_key
 #        # 使druid只当当前的user是谁,cookie_user_key是你保存在cookie中的cookieName
 #        principalCookieName: cookie_user_key
-#logging:
-#  level:
-#    root: info
-#  config: classpath:logback-config.xml
-#  file:
-#    path: /tmp/logs
-# mybatis plus config
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
-#  global-config:
-#    db-config:
-#      logic-delete-value: 1
-#      logic-not-delete-value: 0
-#  mapper-locations: mapper/*.xml
-# dubbo
+logging:
+  level:
+    root: info
+  config: classpath:logback-config.xml
+  file:
+    path: /tmp/logs
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: mapper/*.xml
 #dubbo:
 #  consumer:
 #    timeout: 600000
@@ -135,13 +152,9 @@
 #  #    register: true
 #  cloud:
 #    subscribed-services: spring-mongodb
-#server:
-#  port: 8004
-# jasypt
+server:
+  port: 8004
 #jasypt:
 #  encryptor:
 #    password: luyun
 # 不理解为什么写在application中才行呢？TODO
-spring:
-  main:
-    allow-circular-references: true
